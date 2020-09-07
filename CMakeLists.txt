@@ -43,3 +43,4 @@ add_library(romea_lidar
     src/LIDARPose.cpp
     )
 
+target_link_libraries(romea_lidar ${catkin_LIBRARIES})

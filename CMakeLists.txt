@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -std=c++17 -O3")
 #######################
 ## Find dependencies ##
 #######################
-set(${PROJECT_NAME}_CATKIN_DEPS roscpp romea_common romea_common_utils)
+set(${PROJECT_NAME}_CATKIN_DEPS romea_common)
 find_package(catkin REQUIRED COMPONENTS ${${PROJECT_NAME}_CATKIN_DEPS})
 find_package(Boost REQUIRED COMPONENTS system)
 

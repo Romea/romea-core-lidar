@@ -8,7 +8,6 @@ project(
   LANGUAGES CXX)
 
 find_package(romea_common REQUIRED)
-find_package(TBB REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/LIDAR2D.cpp
@@ -34,8 +33,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
   -Wall -Wextra -O3 -std=c++17)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-  ${romea_common_LIBRARIES}
-  ${TBB_LIBRARIES})
+  ${romea_common_LIBRARIES} tbb)
 
 include(GNUInstallDirs)
 

@@ -9,7 +9,7 @@
 #include <Eigen/Geometry>
 
 //romea
-#include <romea_common/pointset/PointSet.hpp>
+#include <romea_core_common/pointset/PointSet.hpp>
 
 namespace romea {
 

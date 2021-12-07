@@ -2,8 +2,8 @@
 #define romea_LIDARUndistortedFrame_hpp
 
 //romea
-#include "romea_common/pointset/PointSet.hpp"
-#include "romea_common/time/Time.hpp"
+#include "romea_core_common/pointset/PointSet.hpp"
+#include "romea_core_common/time/Time.hpp"
 
 //std
 #include <memory>

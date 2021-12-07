@@ -2,9 +2,9 @@
 #define romea_LIDARFrameFeatures_hpp
 
 //romea
-#include "romea_common/pointset/PointSet.hpp"
-#include "romea_common/pointset/NormalSet.hpp"
-#include "romea_common/pointset/KdTree.hpp"
+#include "romea_core_common/pointset/PointSet.hpp"
+#include "romea_core_common/pointset/NormalSet.hpp"
+#include "romea_core_common/pointset/KdTree.hpp"
 
 namespace romea {
 

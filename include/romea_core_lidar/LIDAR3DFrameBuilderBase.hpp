@@ -2,7 +2,7 @@
 #define romea_LIDAR3DFrameBuilderBase_hpp
 
 //romea
-#include <romea_common/time/Time.hpp>
+#include <romea_core_common/time/Time.hpp>
 #include "LIDAR3D.hpp"
 
 namespace romea {

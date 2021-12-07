@@ -1,5 +1,5 @@
-#include "romea_lidar/LIDAR3DFrameBuilder.hpp"
-#include <romea_common/pointset/PointTraits.hpp>
+#include "romea_core_lidar/LIDAR3DFrameBuilder.hpp"
+#include <romea_core_common/pointset/PointTraits.hpp>
 
 namespace romea {
 

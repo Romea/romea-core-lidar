@@ -1,12 +1,11 @@
-#ifndef romea_LIDAR3DUndistortedFrameBuilder_hpp
-#define romea_LIDAR3DUndistortedFrameBuilder_hpp
+#ifndef romea_LIDAR2DUndistortedFrameBuilder_hpp
+#define romea_LIDAR2DUndistortedFrameBuilder_hpp
 
 //romea
-#include <romea_common/time/Time.hpp>
-#include <romea_common/math/Interval.hpp>
-#include <romea_common/pointset/PointTraits.hpp>
-
-#include "LIDAR3DFrameBuilderBase.hpp"
+#include <romea_core_common/time/Time.hpp>
+#include <romea_core_common/math/Interval.hpp>
+#include <romea_core_common/pointset/PointTraits.hpp>
+#include "LIDAR2DFrameBuilderBase.hpp"
 #include "LIDARUndistortedFrame.hpp"
 #include "LIDARPose.hpp"
 
@@ -19,8 +18,8 @@
 namespace romea {
 
 
-template <class PointType, typename RangeScalarType>
-class LIDAR3DUndistortedFrameBuilder : public LIDAR3DFrameBuilderBase<typename PointType::Scalar>
+template <class PointType,typename RangeScalarType=float>
+class LIDAR2DUndistortedFrameBuilder : public LIDAR2DFrameBuilderBase<typename PointType::Scalar>
 {  
 
 public :
@@ -30,17 +29,17 @@ public :
   using Vector4 =Eigen::Matrix<Scalar,4,1> ;
   using UpdateFunction = StampedWrapper<Duration,std::function<void(void)> > ;
   using UpdateFunctionPtr = std::shared_ptr<UpdateFunction> ;
-  using Self = LIDAR3DUndistortedFrameBuilder<PointType,RangeScalarType>;
+  using Self = LIDAR2DUndistortedFrameBuilder <PointType,RangeScalarType>;
 
   using RangeVector = std::vector<RangeScalarType> ;
   using PointRange = IntervalComplement<Scalar,PointTraits<PointType>::DIM>;
 
 public :
 
-  LIDAR3DUndistortedFrameBuilder(const LIDAR3D & lidar);
+  LIDAR2DUndistortedFrameBuilder(const LIDAR2D & lidar);
 
 
-  virtual ~LIDAR3DUndistortedFrameBuilder()=default;
+  virtual ~LIDAR2DUndistortedFrameBuilder()=default;
 
 
 public :
@@ -78,28 +77,21 @@ public :
                                                           const RangeVector & ranges,
                                                           const double & userMinimalRange,
                                                           const double & userMaximalRange,
-                                                          const size_t & userFirstAzimutAngleIndex,
-                                                          const size_t & userLastAzimutAngleIndex,
-                                                          const size_t & userFirstElevationAngleIndex,
-                                                          const size_t & userLastElevationAngleIndex);
+                                                          const size_t & firstAzimutAngleIndex,
+                                                          const size_t & lastAzimutAngleIndex);
 
-  //  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
-  //                                                          const Duration &endAcquisitionTime,
-  //                                                          const RangeVector & ranges,
-  //                                                          const RangeSet & rangeSet,
-  //                                                          const size_t & userFirstAzimutAngleIndex,
-  //                                                          const size_t & userLastAzimutAngleIndex,
-  //                                                          const size_t & userFirstElevationAngleIndex,
-  //                                                          const size_t & userLastElevationAngleIndex);
+//  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
+//                                                          const Duration &endAcquisitionTime,
+//                                                          const RangeVector & ranges,
+//                                                          const PointRange & PointRange);
 
-  //  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
-  //                                                          const Duration &endAcquisitionTime,
-  //                                                          const RangeVector & ranges,
-  //                                                          const RangeSet & rangeSet,
-  //                                                          const size_t & firstAzimutAngleIndex,
-  //                                                          const size_t & lastAzimutAngleIndex);
-  //                                                          const size_t & userFirstElevationAngleIndex,
-  //                                                          const size_t & userLastElevationAngleIndex);
+//  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
+//                                                          const Duration &endAcquisitionTime,
+//                                                          const RangeVector & ranges,
+//                                                          const PointRange & PointRange,
+//                                                          const size_t & firstAzimutAngleIndex,
+//                                                          const size_t & lastAzimutAngleIndex);
+
 protected :
 
   LIDARPose<Scalar> pose_;

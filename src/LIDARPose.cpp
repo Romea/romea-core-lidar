@@ -1,5 +1,5 @@
-#include "romea_lidar/LIDARPose.hpp"
-#include <romea_common/pointset/PointTraits.hpp>
+#include "romea_core_lidar/LIDARPose.hpp"
+#include <romea_core_common/pointset/PointTraits.hpp>
 
 namespace romea {
 

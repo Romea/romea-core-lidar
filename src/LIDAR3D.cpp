@@ -1,4 +1,4 @@
-#include "romea_lidar/LIDAR3D.hpp"
+#include "romea_core_lidar/LIDAR3D.hpp"
 
 namespace romea
 {

@@ -2,8 +2,8 @@
 #define romea_LIDAR2DFrameBuilder_hpp
 
 //romea
-#include <romea_common/math/Interval.hpp>
-#include <romea_common/pointset/PointTraits.hpp>
+#include <romea_core_common/math/Interval.hpp>
+#include <romea_core_common/pointset/PointTraits.hpp>
 #include "LIDAR2DFrameBuilderBase.hpp"
 
 namespace romea {

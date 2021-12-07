@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(
-  "romea_lidar"
+  "romea_core_lidar"
   VERSION 0.1.0
   #  DESCRIPTION
   #  HOMEPAGE_URL
   LANGUAGES CXX)
 
-find_package(romea_common REQUIRED)
+find_package(romea_core_common REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
   src/LIDAR2D.cpp
@@ -26,14 +26,14 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
-  ${romea_common_INCLUDE_DIRS}
+  ${romea_core_common_INCLUDE_DIRS}
   ${TBB_INCLUDE_DIRS})
 
 target_compile_options(${PROJECT_NAME} PRIVATE
   -Wall -Wextra -O3 -std=c++17)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-  ${romea_common_LIBRARIES} tbb)
+  ${romea_core_common_LIBRARIES} tbb)
 
 include(GNUInstallDirs)
 

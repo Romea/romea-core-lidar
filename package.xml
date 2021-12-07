@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>romea_lidar</name>
+  <name>romea_core_lidar</name>
   <version>0.0.0</version>
   <description>The romea package common</description>
   <author email="jean.laneurit@inrae.fr">Jean Laneurit</author>

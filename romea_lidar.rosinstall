@@ -1,5 +1,5 @@
 - git:
     local-name: src/romea/romea_common_core
     uri: git@gitlab-ssh.irstea.fr:romea_core/romea_common.git
-    version: master
+    version: devel
 

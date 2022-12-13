@@ -1,7 +1,11 @@
-#ifndef romea_LIDARFrameFeatures_hpp
-#define romea_LIDARFrameFeatures_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDARFRAMEFEATURES_HPP_
+#define ROMEA_CORE_LIDAR_LIDARFRAMEFEATURES_HPP_
 
-//romea
+// std
+#include <memory>
+#include <vector>
+
+// romea
 #include "romea_core_common/pointset/PointSet.hpp"
 #include "romea_core_common/pointset/NormalSet.hpp"
 #include "romea_core_common/pointset/KdTree.hpp"
@@ -12,7 +16,7 @@ template <class PointType>
 struct LIDARFrameFeatures
 {
   using Ptr = std::shared_ptr<LIDARFrameFeatures<PointType> > ;
-  using ConstPtr =std::shared_ptr<const LIDARFrameFeatures<PointType> > ;
+  using ConstPtr  = std::shared_ptr<const LIDARFrameFeatures<PointType> > ;
 
   KdTree<PointType> kdTree;
   NormalSet<PointType> normals;
@@ -20,6 +24,6 @@ struct LIDARFrameFeatures
   std::vector<double> pointsNormalsReliability;
 };
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_LIDAR_LIDARFRAMEFEATURES_HPP_

@@ -23,13 +23,12 @@ LIDAR2D::LIDAR2D(const double & rate,
   rangeVariance_(rangeStd*rangeStd),
   lidarPose_(Eigen::Affine3d::Identity())
 {
-
 }
 
 //-----------------------------------------------------------------------------
 void LIDAR2D::setBodyPose(const Eigen::Affine3d & position)
 {
-  lidarPose_=position;
+  lidarPose_ = position;
 }
 
 //-----------------------------------------------------------------------------
@@ -92,4 +91,4 @@ const double & LIDAR2D::getAzimutAperture()const
   return azimutAperture_;
 }
 
-}
+}  // namespace romea

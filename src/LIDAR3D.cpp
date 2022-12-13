@@ -77,5 +77,4 @@ const LIDAR3D::ScanStorageOrder &LIDAR3D::getScanStorageOrder()const
   return scanStorageOrder_;
 }
 
-
-}
+}  // namespace romea

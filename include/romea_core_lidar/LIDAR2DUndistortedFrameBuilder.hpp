@@ -1,46 +1,46 @@
-#ifndef romea_LIDAR2DUndistortedFrameBuilder_hpp
-#define romea_LIDAR2DUndistortedFrameBuilder_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDAR2DUNDISTORTEDFRAMEBUILDER_HPP_
+#define ROMEA_CORE_LIDAR_LIDAR2DUNDISTORTEDFRAMEBUILDER_HPP_
 
-//romea
+// std
+#include <functional>
+#include <memory>
+#include <vector>
+
+// tbb
+#include "tbb/concurrent_priority_queue.h"
+
+// romea
 #include <romea_core_common/time/Time.hpp>
 #include <romea_core_common/math/Interval.hpp>
 #include <romea_core_common/pointset/PointTraits.hpp>
-#include "LIDAR2DFrameBuilderBase.hpp"
-#include "LIDARUndistortedFrame.hpp"
-#include "LIDARPose.hpp"
+#include "romea_core_lidar/LIDAR2DFrameBuilderBase.hpp"
+#include "romea_core_lidar/LIDARUndistortedFrame.hpp"
+#include "romea_core_lidar/LIDARPose.hpp"
 
-//tbb
-#include "tbb/concurrent_priority_queue.h"
-
-//std
-#include <functional>
 
 namespace romea {
 
 
-template <class PointType,typename RangeScalarType=float>
+template <class PointType, typename RangeScalarType = float>
 class LIDAR2DUndistortedFrameBuilder : public LIDAR2DFrameBuilderBase<typename PointType::Scalar>
-{  
-
+{
 public :
 
-  using Scalar =typename PointType::Scalar ;
-  using Matrix4 =Eigen::Matrix<Scalar,4,4> ;
-  using Vector4 =Eigen::Matrix<Scalar,4,1> ;
-  using UpdateFunction = StampedWrapper<Duration,std::function<void(void)> > ;
-  using UpdateFunctionPtr = std::shared_ptr<UpdateFunction> ;
-  using Self = LIDAR2DUndistortedFrameBuilder <PointType,RangeScalarType>;
+  using Scalar  = typename PointType::Scalar ;
+  using Matrix4  = Eigen::Matrix<Scalar, 4, 4> ;
+  using Vector4  = Eigen::Matrix<Scalar, 4, 1> ;
+  using UpdateFunction = StampedWrapper<Duration, std::function<void(void)> > ;
+  using UpdateFunctionPtr = std::shared_ptr<UpdateFunction>;
+  using Self = LIDAR2DUndistortedFrameBuilder <PointType, RangeScalarType>;
 
   using RangeVector = std::vector<RangeScalarType> ;
-  using PointRange = IntervalComplement<Scalar,PointTraits<PointType>::DIM>;
+  using PointRange = IntervalComplement<Scalar, PointTraits<PointType>::DIM>;
 
 public :
 
-  LIDAR2DUndistortedFrameBuilder(const LIDAR2D & lidar);
+  explicit LIDAR2DUndistortedFrameBuilder(const LIDAR2D & lidar);
 
-
-  virtual ~LIDAR2DUndistortedFrameBuilder()=default;
-
+  virtual ~LIDAR2DUndistortedFrameBuilder() = default;
 
 public :
 
@@ -97,9 +97,6 @@ protected :
   LIDARPose<Scalar> pose_;
 };
 
+}  // namespace romea
 
-
-
-}
-
-#endif
+#endif  // ROMEA_CORE_LIDAR_LIDAR2DUNDISTORTEDFRAMEBUILDER_HPP_

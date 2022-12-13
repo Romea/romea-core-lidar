@@ -1,12 +1,13 @@
-#ifndef romea_LIDARUndistortedFrame_hpp
-#define romea_LIDARUndistortedFrame_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDARUNDISTORTEDFRAME_HPP
+#define ROMEA_CORE_LIDAR_LIDARUNDISTORTEDFRAME_HPP
 
-//romea
+// std
+#include <memory>
+
+// romea
 #include "romea_core_common/pointset/PointSet.hpp"
 #include "romea_core_common/time/Time.hpp"
 
-//std
-#include <memory>
 
 namespace romea {
 
@@ -18,12 +19,12 @@ struct LIDARUndistortedFrame
 
   romea::Duration startAcquisitionTime;
   romea::Duration endAcquisitionTime;
-  Eigen::Matrix<typename PointType::Scalar,4,4> startLidarPose;
-  Eigen::Matrix<typename PointType::Scalar,4,4> endLidarPose;
+  Eigen::Matrix<typename PointType::Scalar, 4, 4> startLidarPose;
+  Eigen::Matrix<typename PointType::Scalar, 4, 4> endLidarPose;
   PointSet<PointType> laserOriginPoints;
   PointSet<PointType> laserEndPoints;
 };
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_LIDAR_LIDARUNDISTORTEDFRAME_HPP

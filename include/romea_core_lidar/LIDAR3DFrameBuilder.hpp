@@ -1,10 +1,13 @@
-#ifndef romea_LIDAR3DFrameBuilder_hpp
-#define romea_LIDAR3DFrameBuilder_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP
+#define ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP
 
-//romea
+//std
+#include <vector>
+
+// romea
 #include <romea_core_common/math/Interval.hpp>
 #include <romea_core_common/pointset/PointTraits.hpp>
-#include "LIDAR3DFrameBuilderBase.hpp"
+#include "romea_core_lidar/LIDAR3DFrameBuilderBase.hpp"
 
 namespace romea {
 
@@ -12,21 +15,20 @@ namespace romea {
 template <class PointType, typename RangeScalarType>
 class LIDAR3DFrameBuilder : public LIDAR3DFrameBuilderBase<typename PointType::Scalar>
 {
-
 public :
 
   using RangeVector = std::vector<RangeScalarType>;
 
   using PointScalarType = typename PointType::Scalar;
-  using PointRange = IntervalComplement<PointScalarType,PointTraits<PointType>::DIM>;
+  using PointRange = IntervalComplement<PointScalarType, PointTraits<PointType>::DIM>;
 
 public :
 
   LIDAR3DFrameBuilder();
 
-  LIDAR3DFrameBuilder(const LIDAR3D & lidar);
+  explicit LIDAR3DFrameBuilder(const LIDAR3D & lidar);
 
-  virtual ~LIDAR3DFrameBuilder()=default;
+  virtual ~LIDAR3DFrameBuilder() = default;
 
   PointSet<PointType> createFrame(const RangeVector & ranges)const;
 
@@ -61,5 +63,6 @@ public :
   //                                                          const size_t & userLastElevationAngleIndex);
 };
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP

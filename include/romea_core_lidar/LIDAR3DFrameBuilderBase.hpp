@@ -1,9 +1,9 @@
-#ifndef romea_LIDAR3DFrameBuilderBase_hpp
-#define romea_LIDAR3DFrameBuilderBase_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_ 
+#define ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_ 
 
-//romea
+// romea
 #include <romea_core_common/time/Time.hpp>
-#include "LIDAR3D.hpp"
+#include "romea_core_lidar/LIDAR3D.hpp"
 
 namespace romea {
 
@@ -11,19 +11,18 @@ namespace romea {
 template <typename Scalar>
 class LIDAR3DFrameBuilderBase
 {
-
 public :
 
-  using Vector4 =Eigen::Matrix<Scalar,4,1> ;
-  using Matrix4 =Eigen::Matrix<Scalar,4,4> ;
+  using Vector4  = Eigen::Matrix<Scalar, 4, 1> ;
+  using Matrix4  = Eigen::Matrix<Scalar, 4, 4> ;
 
 public :
 
   LIDAR3DFrameBuilderBase();
 
-  LIDAR3DFrameBuilderBase(const LIDAR3D & lidar);
+  explicit LIDAR3DFrameBuilderBase(const LIDAR3D & lidar);
 
-  virtual ~LIDAR3DFrameBuilderBase()=default;
+  virtual ~LIDAR3DFrameBuilderBase() = default;
 
   void init(const LIDAR3D & lidar);
 
@@ -39,8 +38,8 @@ protected :
   LIDAR3D::ScanStorageOrder scanStorageOrder_;
 
   PointSet<Vector4> rayUnitVectors_;
-
 };
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_

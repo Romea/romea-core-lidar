@@ -1,36 +1,38 @@
-#ifndef romea_LIDARPose_hpp
-#define romea_LIDARPose_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 
+#define ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 
 
-//romea
+// std
+#include <functional>
+#include <memory>
+
+// Eigen
+#include "Eigen/Core"
+
+// romea
 #include <romea_core_common/time/Time.hpp>
 
-//tbb
+// tbb
 #include "tbb/concurrent_priority_queue.h"
 
-//std
-#include <functional>
 
-//Eigen
-#include "Eigen/Core"
 
 namespace romea {
 
 
 template <typename Scalar>
 class LIDARPose
-{  
-
+{
 public :
 
-  using Matrix4 =Eigen::Matrix<Scalar,4,4> ;
-  using Vector4 =Eigen::Matrix<Scalar,4,1> ;
-  using UpdateFunction = StampedWrapper<Duration,std::function<void(void)> > ;
+  using Matrix4  = Eigen::Matrix<Scalar, 4, 4> ;
+  using Vector4  = Eigen::Matrix<Scalar, 4, 1> ;
+  using UpdateFunction  = StampedWrapper<Duration, std::function<void(void)> > ;
   using UpdateFunctionPtr = std::shared_ptr<UpdateFunction> ;
   using Self = LIDARPose<Scalar>;
 
 public :
 
-  LIDARPose(const Matrix4 & initialLidarPose);
+  explicit LIDARPose(const Matrix4 & initialLidarPose);
 
   void appendAngularVelocities(const Duration & duration,
                                const Scalar & angularSpeedAlongXBodyAxis,
@@ -89,13 +91,10 @@ private :
   Matrix4 twistH_;
   Matrix4 initialH_;
   Matrix4 interpolatedH_;
-  tbb::concurrent_priority_queue<UpdateFunction,std::greater<UpdateFunction> > updateFunctionQueue_;
+  tbb::concurrent_priority_queue<UpdateFunction, std::greater<UpdateFunction> > updateFunctionQueue_;
 
 };
 
+}  // namespace romea
 
-
-
-}
-
-#endif
+#endif  // ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 

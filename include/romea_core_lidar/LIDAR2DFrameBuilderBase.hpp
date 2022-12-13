@@ -1,28 +1,24 @@
-#ifndef romea_LIDAR2DFrameBuilderBase_hpp
-#define romea_LIDAR2DFrameBuilderBase_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDERBASE_HPP_
+#define ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDERBASE_HPP_
 
-//romea
-#include "LIDAR2D.hpp"
+// romea
+#include "romea_core_lidar/LIDAR2D.hpp"
 
 namespace romea {
 
 template <typename Scalar>
 class LIDAR2DFrameBuilderBase
 {
+public :
+  using Vector4 = Eigen::Matrix<Scalar, 4, 1> ;
+  using Matrix4 = Eigen::Matrix<Scalar, 4, 4> ;
 
 public :
-
-  using Vector4 =Eigen::Matrix<Scalar,4,1> ;
-  using Matrix4 =Eigen::Matrix<Scalar,4,4> ;
-
-public :
-
-
   LIDAR2DFrameBuilderBase();
 
-  LIDAR2DFrameBuilderBase(const LIDAR2D & lidar);
+  explicit LIDAR2DFrameBuilderBase(const LIDAR2D & lidar);
 
-  virtual ~LIDAR2DFrameBuilderBase()=default;
+  virtual ~LIDAR2DFrameBuilderBase() = default;
 
   virtual void init(const LIDAR2D & lidar);
 
@@ -34,8 +30,8 @@ protected :
   double maximalRange_;
 
   PointSet<Vector4> rayUnitVectors_;
-
 };
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDERBASE_HPP_

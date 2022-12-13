@@ -1,21 +1,20 @@
-#ifndef romea_LIDAR2D_hpp
-#define romea_LIDAR2D_hpp
+#ifndef ROMEA_CORE_LIDAR_LIDAR2D_HPP_ 
+#define ROMEA_CORE_LIDAR_LIDAR2D_HPP_ 
 
-//std
+// eigen
+#include <Eigen/Geometry>
+
+// std
 #include <string>
 #include <vector>
 
-//eigen
-#include <Eigen/Geometry>
-
-//romea
+// romea
 #include <romea_core_common/pointset/PointSet.hpp>
 
 namespace romea {
 
 class LIDAR2D
 {
-
 public :
 
   LIDAR2D(const double & rate,
@@ -27,7 +26,7 @@ public :
           const double & maximalRange,
           const double & rangeStd);
 
-  virtual ~LIDAR2D()=default;
+  virtual ~LIDAR2D() = default;
 
   const double & getRate() const;
 
@@ -38,7 +37,6 @@ public :
   const double & getAzimutAngleVariance()const;
   const double & getAzimutAperture()const;
 
-
   const double & getMinimalRange() const;
   const double & getMaximalRange() const;
   const double & getRangeStd()const;
@@ -48,7 +46,6 @@ public :
   const Eigen::Affine3d & getBodyPose()const;
 
 protected:
-
   double rate_;
 
   double minimalAzimutAngle_;
@@ -56,7 +53,7 @@ protected:
   double azimutAngleIncrement_;
   double azimutAngleStd_;
   double azimutAngleVariance_;
-  double azimutAperture_;  
+  double azimutAperture_;
 
   double mininalRange_;
   double maximalRange_;
@@ -66,6 +63,6 @@ protected:
   Eigen::Affine3d lidarPose_;
 };
 
+}  // namespace romea
 
-}
-#endif
+#endif  // ROMEA_CORE_LIDAR_LIDAR2D_HPP_

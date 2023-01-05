@@ -1,35 +1,39 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_lidar/LIDAR3D.hpp"
 
 namespace romea
 {
 
-LIDAR3D::LIDAR3D(const double & rate,
-                 const double & minimalAzimutAngle,
-                 const double & maximalAzimutAngle,
-                 const double & azimutAngleIncrement,
-                 const double & azimutAngleStd,
-                 const double & minimalElevationAngle,
-                 const double & maximalElevationAngle,
-                 const double & elevationAngleIncrement,
-                 const double & elevationAngleStd,
-                 const double & mininalRange,
-                 const double & maximalRange,
-                 const double & rangeStd,
-                 const ScanStorageOrder &scanStorageOrder):
-  LIDAR2D(rate,
-          minimalAzimutAngle,
-          maximalAzimutAngle,
-          azimutAngleIncrement,
-          azimutAngleStd,
-          mininalRange,
-          maximalRange,
-          rangeStd),
+LIDAR3D::LIDAR3D(
+  const double & rate,
+  const double & minimalAzimutAngle,
+  const double & maximalAzimutAngle,
+  const double & azimutAngleIncrement,
+  const double & azimutAngleStd,
+  const double & minimalElevationAngle,
+  const double & maximalElevationAngle,
+  const double & elevationAngleIncrement,
+  const double & elevationAngleStd,
+  const double & mininalRange,
+  const double & maximalRange,
+  const double & rangeStd,
+  const ScanStorageOrder & scanStorageOrder)
+: LIDAR2D(rate,
+    minimalAzimutAngle,
+    maximalAzimutAngle,
+    azimutAngleIncrement,
+    azimutAngleStd,
+    mininalRange,
+    maximalRange,
+    rangeStd),
   minimalElevationAngle_(minimalElevationAngle),
   maximalElevationAngle_(maximalElevationAngle),
   elevationAngleIncrement_(elevationAngleIncrement),
   elevationAngleStd_(elevationAngleStd),
-  elevationAngleVariance_(elevationAngleStd*elevationAngleStd),
-  elevationAperture_(maximalElevationAngle-minimalElevationAngle),
+  elevationAngleVariance_(elevationAngleStd * elevationAngleStd),
+  elevationAperture_(maximalElevationAngle - minimalElevationAngle),
   scanStorageOrder_(scanStorageOrder)
 {
 }
@@ -72,7 +76,7 @@ const double & LIDAR3D::getElevationAperture() const
 
 
 //-----------------------------------------------------------------------------
-const LIDAR3D::ScanStorageOrder &LIDAR3D::getScanStorageOrder()const
+const LIDAR3D::ScanStorageOrder & LIDAR3D::getScanStorageOrder()const
 {
   return scanStorageOrder_;
 }

@@ -1,9 +1,12 @@
-#ifndef ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 
-#define ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
 
-// std
-#include <functional>
-#include <memory>
+#ifndef ROMEA_CORE_LIDAR__LIDARPOSE_HPP_
+#define ROMEA_CORE_LIDAR__LIDARPOSE_HPP_
+
+
+// tbb
+#include <tbb/concurrent_priority_queue.h>
 
 // Eigen
 #include "Eigen/Core"
@@ -11,46 +14,49 @@
 // romea
 #include <romea_core_common/time/Time.hpp>
 
-// tbb
-#include "tbb/concurrent_priority_queue.h"
+// std
+#include <functional>
+#include <memory>
 
 
 
-namespace romea {
+namespace romea
+{
 
 
-template <typename Scalar>
+template<typename Scalar>
 class LIDARPose
 {
-public :
-
-  using Matrix4  = Eigen::Matrix<Scalar, 4, 4> ;
-  using Vector4  = Eigen::Matrix<Scalar, 4, 1> ;
-  using UpdateFunction  = StampedWrapper<Duration, std::function<void(void)> > ;
-  using UpdateFunctionPtr = std::shared_ptr<UpdateFunction> ;
+public:
+  using Matrix4 = Eigen::Matrix<Scalar, 4, 4>;
+  using Vector4 = Eigen::Matrix<Scalar, 4, 1>;
+  using UpdateFunction = StampedWrapper<Duration, std::function<void (void)>>;
+  using UpdateFunctionPtr = std::shared_ptr<UpdateFunction>;
   using Self = LIDARPose<Scalar>;
 
-public :
-
+public:
   explicit LIDARPose(const Matrix4 & initialLidarPose);
 
-  void appendAngularVelocities(const Duration & duration,
-                               const Scalar & angularSpeedAlongXBodyAxis,
-                               const Scalar & angularSpeedAlongYBodyAxis,
-                               const Scalar & angularSpeedAlongZBodyAxis);
+  void appendAngularVelocities(
+    const Duration & duration,
+    const Scalar & angularSpeedAlongXBodyAxis,
+    const Scalar & angularSpeedAlongYBodyAxis,
+    const Scalar & angularSpeedAlongZBodyAxis);
 
-  void appendLinearVelocities(const Duration & duration,
-                              const Scalar & linearSpeedAlongXBodyAxis,
-                              const Scalar & linearSpeedAlongYBodyAxis,
-                              const Scalar & linearSpeedAlongZBodyAxis);
+  void appendLinearVelocities(
+    const Duration & duration,
+    const Scalar & linearSpeedAlongXBodyAxis,
+    const Scalar & linearSpeedAlongYBodyAxis,
+    const Scalar & linearSpeedAlongZBodyAxis);
 
-  void appendTwist(const Duration & duration,
-                   const Scalar & angularSpeedAlongXBodyAxis,
-                   const Scalar & angularSpeedAlongYBodyAxis,
-                   const Scalar & angularSpeedAlongZBodyAxis,
-                   const Scalar & linearSpeedAlongXBodyAxis,
-                   const Scalar & linearSpeedAlongYBodyAxis,
-                   const Scalar & linearSpeedAlongZBodyAxis);
+  void appendTwist(
+    const Duration & duration,
+    const Scalar & angularSpeedAlongXBodyAxis,
+    const Scalar & angularSpeedAlongYBodyAxis,
+    const Scalar & angularSpeedAlongZBodyAxis,
+    const Scalar & linearSpeedAlongXBodyAxis,
+    const Scalar & linearSpeedAlongYBodyAxis,
+    const Scalar & linearSpeedAlongZBodyAxis);
 
   void extrapolate(const Duration & duration, Matrix4 & extrapolatePose);
 
@@ -58,31 +64,31 @@ public :
 
   void update(const Duration & duration);
 
+private:
+  void updateAngularVelocities_(
+    const Scalar & angularSpeedAlongXBodyAxis,
+    const Scalar & angularSpeedAlongYBodyAxis,
+    const Scalar & angularSpeedAlongZBodyAxis);
 
-private :
+  void updateLinearVelocities_(
+    const Scalar & linearSpeedAlongXBodyAxis,
+    const Scalar & linearSpeedAlongYBodyAxis,
+    const Scalar & linearSpeedAlongZBodyAxis);
 
+  void updateTwist_(
+    const Scalar & angularSpeedAlongXBodyAxis,
+    const Scalar & angularSpeedAlongYBodyAxis,
+    const Scalar & angularSpeedAlongZBodyAxis,
+    const Scalar & linearSpeedAlongXBodyAxis,
+    const Scalar & linearSpeedAlongYBodyAxis,
+    const Scalar & linearSpeedAlongZBodyAxis);
 
-  void updateAngularVelocities_(const Scalar & angularSpeedAlongXBodyAxis,
-                                const Scalar & angularSpeedAlongYBodyAxis,
-                                const Scalar & angularSpeedAlongZBodyAxis);
+  void predict_(
+    const Matrix4 & previousPose,
+    const Duration & currentStamp,
+    Matrix4 & currentPose);
 
-  void updateLinearVelocities_(const Scalar & linearSpeedAlongXBodyAxis,
-                               const Scalar & linearSpeedAlongYBodyAxis,
-                               const Scalar & linearSpeedAlongZBodyAxis);
-
-  void updateTwist_(const Scalar & angularSpeedAlongXBodyAxis,
-                    const Scalar & angularSpeedAlongYBodyAxis,
-                    const Scalar & angularSpeedAlongZBodyAxis,
-                    const Scalar & linearSpeedAlongXBodyAxis,
-                    const Scalar & linearSpeedAlongYBodyAxis,
-                    const Scalar & linearSpeedAlongZBodyAxis);
-
-  void predict_(const Matrix4 & previousPose,
-                const Duration &currentStamp,
-                Matrix4 & currentPose);
-
-private :
-
+private:
   Duration previousUpdateStamp_;
   UpdateFunction lastUpdateFunction_;
 
@@ -91,10 +97,9 @@ private :
   Matrix4 twistH_;
   Matrix4 initialH_;
   Matrix4 interpolatedH_;
-  tbb::concurrent_priority_queue<UpdateFunction, std::greater<UpdateFunction> > updateFunctionQueue_;
-
+  tbb::concurrent_priority_queue<UpdateFunction, std::greater<UpdateFunction>> updateFunctionQueue_;
 };
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_LIDAR_LIDARPOSE_HPP_ 
+#endif  // ROMEA_CORE_LIDAR__LIDARPOSE_HPP_

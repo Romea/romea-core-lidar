@@ -1,125 +1,137 @@
-#include "romea_core_lidar/LIDAR2DUndistortedFrameBuilder.hpp"
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// romea core
 #include <romea_core_common/pointset/PointTraits.hpp>
 
-namespace romea {
+// std
+#include <algorithm>
+
+// local
+#include "romea_core_lidar/LIDAR2DUndistortedFrameBuilder.hpp"
+
+
+namespace romea
+{
 
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
-LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::
-LIDAR2DUndistortedFrameBuilder(const LIDAR2D & lidar):
-  LIDAR2DFrameBuilderBase<typename PointType::Scalar>(lidar),
+template<class PointType, typename RangeScalarType>
+LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::LIDAR2DUndistortedFrameBuilder(
+  const LIDAR2D & lidar)
+: LIDAR2DFrameBuilderBase<typename PointType::Scalar>(lidar),
   pose_(lidar.getBodyPose().matrix().cast<Scalar>())
-
 {
-
 }
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
-void LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::
-appendAngularVelocities(const Duration & duration,
-                        const Scalar & angularSpeedAlongXBodyAxis,
-                        const Scalar & angularSpeedAlongYBodyAxis,
-                        const Scalar & angularSpeedAlongZBodyAxis)
+template<class PointType, typename RangeScalarType>
+void LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::appendAngularVelocities(
+  const Duration & duration,
+  const Scalar & angularSpeedAlongXBodyAxis,
+  const Scalar & angularSpeedAlongYBodyAxis,
+  const Scalar & angularSpeedAlongZBodyAxis)
 {
-  pose_.appendAngularVelocities(duration,
-                                angularSpeedAlongXBodyAxis,
-                                angularSpeedAlongYBodyAxis,
-                                angularSpeedAlongZBodyAxis);
-
+  pose_.appendAngularVelocities(
+    duration,
+    angularSpeedAlongXBodyAxis,
+    angularSpeedAlongYBodyAxis,
+    angularSpeedAlongZBodyAxis);
 }
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
-void LIDAR2DUndistortedFrameBuilder <PointType, RangeScalarType>::
-appendLinearVelocities(const Duration & duration,
-                       const Scalar &linearSpeedAlongXBodyAxis,
-                       const Scalar &linearSpeedAlongYBodyAxis,
-                       const Scalar &linearSpeedAlongZBodyAxis)
+template<class PointType, typename RangeScalarType>
+void LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::appendLinearVelocities(
+  const Duration & duration,
+  const Scalar & linearSpeedAlongXBodyAxis,
+  const Scalar & linearSpeedAlongYBodyAxis,
+  const Scalar & linearSpeedAlongZBodyAxis)
 {
-  pose_.appendLinearVelocities(duration,
-                               linearSpeedAlongXBodyAxis,
-                               linearSpeedAlongYBodyAxis,
-                               linearSpeedAlongZBodyAxis);
-
+  pose_.appendLinearVelocities(
+    duration,
+    linearSpeedAlongXBodyAxis,
+    linearSpeedAlongYBodyAxis,
+    linearSpeedAlongZBodyAxis);
 }
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
-void LIDAR2DUndistortedFrameBuilder <PointType, RangeScalarType>::
-appendTwist(const Duration & duration,
-            const Scalar & angularSpeedAlongXBodyAxis,
-            const Scalar & angularSpeedAlongYBodyAxis,
-            const Scalar & angularSpeedAlongZBodyAxis,
-            const Scalar & linearSpeedAlongXBodyAxis,
-            const Scalar & linearSpeedAlongYBodyAxis,
-            const Scalar & linearSpeedAlongZBodyAxis)
+template<class PointType, typename RangeScalarType>
+void LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::appendTwist(
+  const Duration & duration,
+  const Scalar & angularSpeedAlongXBodyAxis,
+  const Scalar & angularSpeedAlongYBodyAxis,
+  const Scalar & angularSpeedAlongZBodyAxis,
+  const Scalar & linearSpeedAlongXBodyAxis,
+  const Scalar & linearSpeedAlongYBodyAxis,
+  const Scalar & linearSpeedAlongZBodyAxis)
 {
-  pose_.appendTwist(duration,
-                    angularSpeedAlongXBodyAxis,
-                    angularSpeedAlongYBodyAxis,
-                    angularSpeedAlongZBodyAxis,
-                    linearSpeedAlongXBodyAxis,
-                    linearSpeedAlongYBodyAxis,
-                    linearSpeedAlongZBodyAxis);
+  pose_.appendTwist(
+    duration,
+    angularSpeedAlongXBodyAxis,
+    angularSpeedAlongYBodyAxis,
+    angularSpeedAlongZBodyAxis,
+    linearSpeedAlongXBodyAxis,
+    linearSpeedAlongYBodyAxis,
+    linearSpeedAlongZBodyAxis);
 }
 
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
+template<class PointType, typename RangeScalarType>
 LIDARUndistortedFrame<PointType>
-LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::
-createUndistortedFrame(const Duration &startAcquisitionTime,
-                       const Duration &endAcquisitionTime,
-                       const RangeVector &ranges)
+LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::createUndistortedFrame(
+  const Duration & startAcquisitionTime,
+  const Duration & endAcquisitionTime,
+  const RangeVector & ranges)
 {
-  return createUndistortedFrame(startAcquisitionTime,
-                                endAcquisitionTime,
-                                ranges,
-                                this->minimalRange_,
-                                this->maximalRange_,
-                                0,
-                                this->rayUnitVectors_.size()-1);
+  return createUndistortedFrame(
+    startAcquisitionTime,
+    endAcquisitionTime,
+    ranges,
+    this->minimalRange_,
+    this->maximalRange_,
+    0,
+    this->rayUnitVectors_.size() - 1);
 }
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
+template<class PointType, typename RangeScalarType>
 LIDARUndistortedFrame<PointType>
-LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::
-createUndistortedFrame(const Duration &startAcquisitionTime,
-                       const Duration &endAcquisitionTime,
-                       const RangeVector & ranges,
-                       const double & userMinimalRange,
-                       const double & userMaximalRange)
+LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::createUndistortedFrame(
+  const Duration & startAcquisitionTime,
+  const Duration & endAcquisitionTime,
+  const RangeVector & ranges,
+  const double & userMinimalRange,
+  const double & userMaximalRange)
 {
-  return createUndistortedFrame(startAcquisitionTime,
-                                endAcquisitionTime,
-                                ranges,
-                                userMinimalRange,
-                                userMaximalRange,
-                                0,
-                                this->rayUnitVectors_.size()-1);
+  return createUndistortedFrame(
+    startAcquisitionTime,
+    endAcquisitionTime,
+    ranges,
+    userMinimalRange,
+    userMaximalRange,
+    0,
+    this->rayUnitVectors_.size() - 1);
 }
 
 //-----------------------------------------------------------------------------
-template <class PointType, typename RangeScalarType>
+template<class PointType, typename RangeScalarType>
 LIDARUndistortedFrame<PointType>
-LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::
-createUndistortedFrame(const Duration &startAcquisitionTime,
-                       const Duration &endAcquisitionTime,
-                       const RangeVector & ranges,
-                       const double & userMinimalRange,
-                       const double & userMaximalRange,
-                       const size_t & userFirstAzimutAngleIndex,
-                       const size_t & userLastAzimutAngleIndex)
+LIDAR2DUndistortedFrameBuilder<PointType, RangeScalarType>::createUndistortedFrame(
+  const Duration & startAcquisitionTime,
+  const Duration & endAcquisitionTime,
+  const RangeVector & ranges,
+  const double & userMinimalRange,
+  const double & userMaximalRange,
+  const size_t & userFirstAzimutAngleIndex,
+  const size_t & userLastAzimutAngleIndex)
 {
   assert(userFirstAzimutAngleIndex < this->rayUnitVectors_.size());
   assert(userLastAzimutAngleIndex < this->rayUnitVectors_.size());
 
   Duration t = startAcquisitionTime;
-  Duration dt = (endAcquisitionTime-startAcquisitionTime)/
-      (userLastAzimutAngleIndex-userFirstAzimutAngleIndex);
+  Duration dt = (endAcquisitionTime - startAcquisitionTime) /
+    (userLastAzimutAngleIndex - userFirstAzimutAngleIndex);
 
   pose_.reset(t);
   pose_.update(t);
@@ -135,15 +147,17 @@ createUndistortedFrame(const Duration &startAcquisitionTime,
   double minimalRange = std::max(this->minimalRange_, userMinimalRange);
   double maximalRange = std::min(this->maximalRange_, userMaximalRange);
 
-  for (size_t n=userFirstAzimutAngleIndex; n <= userLastAzimutAngleIndex; n++, t+=dt)
-  {
-    if (ranges[n] > minimalRange && ranges[n] < maximalRange)
-    {
+  for (size_t n = userFirstAzimutAngleIndex; n <= userLastAzimutAngleIndex; n++, t += dt) {
+    if (ranges[n] > minimalRange && ranges[n] < maximalRange) {
       pose_.extrapolate(t, this->H_);
-      point = this->H_*this->Zero_;
-      frame.laserOriginPoints.push_back(point.template segment<PointTraits<PointType>::SIZE>(0));
-      point += this->H_*(this->rayUnitVectors_[n]*ranges[n]+this->Zero_);
-      frame.laserEndPoints.push_back(point.template segment<PointTraits<PointType>::SIZE>(0));
+
+      point = this->H_ * this->Zero_;
+      frame.laserOriginPoints.push_back(
+        point.template segment<PointTraits<PointType>::SIZE>(0));
+
+      point += this->H_ * (this->rayUnitVectors_[n] * ranges[n] + this->Zero_);
+      frame.laserEndPoints.push_back(
+        point.template segment<PointTraits<PointType>::SIZE>(0));
     }
   }
   return frame;
@@ -159,4 +173,3 @@ template class LIDAR2DUndistortedFrameBuilder<Eigen::Vector3f, double>;
 template class LIDAR2DUndistortedFrameBuilder<Eigen::Vector3d, double>;
 
 }  // namespace romea
-

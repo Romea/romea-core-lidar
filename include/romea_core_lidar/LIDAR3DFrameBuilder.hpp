@@ -1,29 +1,33 @@
-#ifndef ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP
-#define ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
 
-//std
-#include <vector>
+#ifndef ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDER_HPP
+#define ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDER_HPP
 
-// romea
+// romea core
 #include <romea_core_common/math/Interval.hpp>
 #include <romea_core_common/pointset/PointTraits.hpp>
+
+// std
+#include <vector>
+
+// local
 #include "romea_core_lidar/LIDAR3DFrameBuilderBase.hpp"
 
-namespace romea {
+namespace romea
+{
 
 
-template <class PointType, typename RangeScalarType>
+template<class PointType, typename RangeScalarType>
 class LIDAR3DFrameBuilder : public LIDAR3DFrameBuilderBase<typename PointType::Scalar>
 {
-public :
-
+public:
   using RangeVector = std::vector<RangeScalarType>;
 
   using PointScalarType = typename PointType::Scalar;
   using PointRange = IntervalComplement<PointScalarType, PointTraits<PointType>::DIM>;
 
-public :
-
+public:
   LIDAR3DFrameBuilder();
 
   explicit LIDAR3DFrameBuilder(const LIDAR3D & lidar);
@@ -32,17 +36,19 @@ public :
 
   PointSet<PointType> createFrame(const RangeVector & ranges)const;
 
-  PointSet<PointType> createFrame(const RangeVector & ranges,
-                                    const double & userMinimalRange,
-                                    const double & userMaximalRange)const;
+  PointSet<PointType> createFrame(
+    const RangeVector & ranges,
+    const double & userMinimalRange,
+    const double & userMaximalRange)const;
 
-  PointSet<PointType> createFrame(const RangeVector & ranges,
-                                    const double & userMinimalRange,
-                                    const double & userMaximalRange,
-                                    const size_t & userFirstAzimutAngleIndex,
-                                    const size_t & userLastAzimutAngleIndex,
-                                    const size_t & userFirstElevationAngleIndex,
-                                    const size_t & userLastElevationAngleIndex)const;
+  PointSet<PointType> createFrame(
+    const RangeVector & ranges,
+    const double & userMinimalRange,
+    const double & userMaximalRange,
+    const size_t & userFirstAzimutAngleIndex,
+    const size_t & userLastAzimutAngleIndex,
+    const size_t & userFirstElevationAngleIndex,
+    const size_t & userLastElevationAngleIndex)const;
 
   //  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
   //                                                          const Duration &endAcquisitionTime,
@@ -65,4 +71,4 @@ public :
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDER_HPP
+#endif  // ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDER_HPP

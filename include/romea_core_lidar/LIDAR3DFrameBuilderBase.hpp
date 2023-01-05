@@ -1,23 +1,25 @@
-#ifndef ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_ 
-#define ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_ 
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDERBASE_HPP_
+#define ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDERBASE_HPP_
 
 // romea
 #include <romea_core_common/time/Time.hpp>
 #include "romea_core_lidar/LIDAR3D.hpp"
 
-namespace romea {
+namespace romea
+{
 
 
-template <typename Scalar>
+template<typename Scalar>
 class LIDAR3DFrameBuilderBase
 {
-public :
+public:
+  using Vector4 = Eigen::Matrix<Scalar, 4, 1>;
+  using Matrix4 = Eigen::Matrix<Scalar, 4, 4>;
 
-  using Vector4  = Eigen::Matrix<Scalar, 4, 1> ;
-  using Matrix4  = Eigen::Matrix<Scalar, 4, 4> ;
-
-public :
-
+public:
   LIDAR3DFrameBuilderBase();
 
   explicit LIDAR3DFrameBuilderBase(const LIDAR3D & lidar);
@@ -26,8 +28,7 @@ public :
 
   void init(const LIDAR3D & lidar);
 
-protected :
-
+protected:
   Matrix4 H_;
   Vector4 Zero_;
 
@@ -42,4 +43,4 @@ protected :
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_LIDAR_LIDAR3DFRAMEBUILDERBASE_HPP_
+#endif  // ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDERBASE_HPP_

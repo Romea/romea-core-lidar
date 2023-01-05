@@ -1,30 +1,35 @@
-#ifndef ROMEA_CORE_LIDAR_LIDAR2D_HPP_ 
-#define ROMEA_CORE_LIDAR_LIDAR2D_HPP_ 
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_LIDAR__LIDAR2D_HPP_
+#define ROMEA_CORE_LIDAR__LIDAR2D_HPP_
 
 // eigen
 #include <Eigen/Geometry>
+
+// romea core
+#include <romea_core_common/pointset/PointSet.hpp>
 
 // std
 #include <string>
 #include <vector>
 
-// romea
-#include <romea_core_common/pointset/PointSet.hpp>
 
-namespace romea {
+namespace romea
+{
 
 class LIDAR2D
 {
-public :
-
-  LIDAR2D(const double & rate,
-          const double & minimalAzimutAngle,
-          const double & maximalAzimutAngle,
-          const double & azimutAngleIncrement,
-          const double & azimutAngleStd_,
-          const double & mininalRange,
-          const double & maximalRange,
-          const double & rangeStd);
+public:
+  LIDAR2D(
+    const double & rate,
+    const double & minimalAzimutAngle,
+    const double & maximalAzimutAngle,
+    const double & azimutAngleIncrement,
+    const double & azimutAngleStd_,
+    const double & mininalRange,
+    const double & maximalRange,
+    const double & rangeStd);
 
   virtual ~LIDAR2D() = default;
 
@@ -65,4 +70,4 @@ protected:
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_LIDAR_LIDAR2D_HPP_
+#endif  // ROMEA_CORE_LIDAR__LIDAR2D_HPP_

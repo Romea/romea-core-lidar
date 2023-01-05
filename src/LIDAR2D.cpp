@@ -1,26 +1,31 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_lidar/LIDAR2D.hpp"
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-LIDAR2D::LIDAR2D(const double & rate,
-                 const double & minimalAzimutAngle,
-                 const double & maximalAzimutAngle,
-                 const double & azimutAngleIncrement,
-                 const double & azimutAngleStd,
-                 const double & mininalRange,
-                 const double & maximalRange,
-                 const double & rangeStd):
-  rate_(rate),
+LIDAR2D::LIDAR2D(
+  const double & rate,
+  const double & minimalAzimutAngle,
+  const double & maximalAzimutAngle,
+  const double & azimutAngleIncrement,
+  const double & azimutAngleStd,
+  const double & mininalRange,
+  const double & maximalRange,
+  const double & rangeStd)
+: rate_(rate),
   minimalAzimutAngle_(minimalAzimutAngle),
   maximalAzimutAngle_(maximalAzimutAngle),
   azimutAngleIncrement_(azimutAngleIncrement),
   azimutAngleStd_(azimutAngleStd),
-  azimutAperture_(maximalAzimutAngle_-minimalAzimutAngle_),
+  azimutAperture_(maximalAzimutAngle_ - minimalAzimutAngle_),
   mininalRange_(mininalRange),
   maximalRange_(maximalRange),
   rangeStd_(rangeStd),
-  rangeVariance_(rangeStd*rangeStd),
+  rangeVariance_(rangeStd * rangeStd),
   lidarPose_(Eigen::Affine3d::Identity())
 {
 }

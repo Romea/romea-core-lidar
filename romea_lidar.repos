@@ -2,6 +2,6 @@ repositories:
     romea_core/romea_common:
         type: git
         url: git@gitlab-ssh.irstea.fr:romea_core/romea_common.git
-    romea_core/romea_control:
+    romea_core/romea_lidar:
         type: git
         url: git@gitlab-ssh.irstea.fr:romea_core/romea_lidar.git

@@ -37,6 +37,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 template<class PointType, typename RangeScalarType>
@@ -126,6 +128,7 @@ protected:
   LIDARPose<Scalar> pose_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR3DUNDISTORTEDFRAMEBUILDER_HPP_

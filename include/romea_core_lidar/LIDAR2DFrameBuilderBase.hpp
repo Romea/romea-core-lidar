@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 template<typename Scalar>
 class LIDAR2DFrameBuilderBase
@@ -47,6 +49,7 @@ protected:
   PointSet<Vector4> rayUnitVectors_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR2DFRAMEBUILDERBASE_HPP_

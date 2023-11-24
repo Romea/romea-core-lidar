@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 LIDAR3D::LIDAR3D(
   const double & rate,
@@ -93,4 +95,5 @@ const LIDAR3D::ScanStorageOrder & LIDAR3D::getScanStorageOrder()const
   return scanStorageOrder_;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 template<class PointType>
 struct LIDARFrameFeatures
@@ -40,6 +42,7 @@ struct LIDARFrameFeatures
   std::vector<double> pointsNormalsReliability;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDARFRAMEFEATURES_HPP_

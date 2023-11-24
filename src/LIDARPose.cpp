@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //-----------------------------------------------------------------------------
@@ -188,4 +190,5 @@ void LIDARPose<Scalar>::extrapolate(const Duration & duration, Matrix4 & extrapo
 template class LIDARPose<float>;
 template class LIDARPose<double>;
 
+}  // namespace core
 }  // namespace romea

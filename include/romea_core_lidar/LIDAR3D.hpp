@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class LIDAR3D : public LIDAR2D
 {
@@ -68,6 +70,7 @@ protected:
   ScanStorageOrder scanStorageOrder_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR3D_HPP_

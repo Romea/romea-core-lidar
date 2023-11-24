@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 template<typename Scalar>
@@ -53,6 +55,7 @@ protected:
   PointSet<Vector4> rayUnitVectors_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDERBASE_HPP_

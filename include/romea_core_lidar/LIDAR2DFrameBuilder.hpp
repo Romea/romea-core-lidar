@@ -28,6 +28,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 template<class PointType, typename RangeScalarType = float>
@@ -71,6 +73,7 @@ public:
     const size_t & lastAzimutAngleIndex)const;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDER_HPP_

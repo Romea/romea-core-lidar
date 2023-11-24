@@ -24,6 +24,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //-----------------------------------------------------------------------------
@@ -66,4 +68,5 @@ void LIDAR2DFrameBuilderBase<Scalar>::init(const LIDAR2D & lidar)
 template class LIDAR2DFrameBuilderBase<float>;
 template class LIDAR2DFrameBuilderBase<double>;
 
+}  // namespace core
 }  // namespace romea

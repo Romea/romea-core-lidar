@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 template<class PointType>
 struct LIDARUndistortedFrame
@@ -33,14 +35,15 @@ struct LIDARUndistortedFrame
   using Ptr = std::shared_ptr<LIDARUndistortedFrame<PointType>>;
   using ConstPtr = std::shared_ptr<const LIDARUndistortedFrame<PointType>>;
 
-  romea::Duration startAcquisitionTime;
-  romea::Duration endAcquisitionTime;
+  Duration startAcquisitionTime;
+  Duration endAcquisitionTime;
   Eigen::Matrix<typename PointType::Scalar, 4, 4> startLidarPose;
   Eigen::Matrix<typename PointType::Scalar, 4, 4> endLidarPose;
   PointSet<PointType> laserOriginPoints;
   PointSet<PointType> laserEndPoints;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDARUNDISTORTEDFRAME_HPP

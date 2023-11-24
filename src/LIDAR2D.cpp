@@ -18,6 +18,9 @@
 namespace romea
 {
 
+namespace core
+{
+
 //-----------------------------------------------------------------------------
 LIDAR2D::LIDAR2D(
   const double & rate,
@@ -108,4 +111,5 @@ const double & LIDAR2D::getAzimutAperture()const
   return azimutAperture_;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -29,6 +29,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class LIDAR2D
 {
@@ -80,6 +82,7 @@ protected:
   Eigen::Affine3d lidarPose_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR2D_HPP_

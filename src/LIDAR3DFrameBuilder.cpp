@@ -24,6 +24,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //-----------------------------------------------------------------------------
@@ -139,4 +141,5 @@ template class LIDAR3DFrameBuilder<Eigen::Vector2d, double>;
 template class LIDAR3DFrameBuilder<Eigen::Vector3f, double>;
 template class LIDAR3DFrameBuilder<Eigen::Vector3d, double>;
 
+}  // namespace core
 }  // namespace romea

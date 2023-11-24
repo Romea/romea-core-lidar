@@ -31,8 +31,9 @@
 #include <memory>
 
 
-
 namespace romea
+{
+namespace core
 {
 
 
@@ -112,6 +113,7 @@ private:
   tbb::concurrent_priority_queue<UpdateFunction, std::greater<UpdateFunction>> updateFunctionQueue_;
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDARPOSE_HPP_

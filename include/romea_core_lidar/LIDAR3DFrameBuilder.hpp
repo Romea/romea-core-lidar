@@ -28,6 +28,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 template<class PointType, typename RangeScalarType>
@@ -81,6 +83,7 @@ public:
   //                                                          const size_t & userLastElevationAngleIndex);
 };
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_LIDAR__LIDAR3DFRAMEBUILDER_HPP

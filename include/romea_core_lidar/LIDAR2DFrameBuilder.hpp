@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDER_HPP_
-#define ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDER_HPP_
+#ifndef ROMEA_CORE_LIDAR__LIDAR2DFRAMEBUILDER_HPP_
+#define ROMEA_CORE_LIDAR__LIDAR2DFRAMEBUILDER_HPP_
 
 // romea core
 #include <romea_core_common/math/Interval.hpp>
@@ -76,4 +76,4 @@ public:
 }  // namespace core
 }  // namespace romea
 
-#endif  // ROMEA_CORE_LIDAR_LIDAR2DFRAMEBUILDER_HPP_
+#endif  // ROMEA_CORE_LIDAR__LIDAR2DFRAMEBUILDER_HPP_

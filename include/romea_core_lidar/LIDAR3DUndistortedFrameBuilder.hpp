@@ -106,23 +106,25 @@ public:
     const size_t & userFirstElevationAngleIndex,
     const size_t & userLastElevationAngleIndex);
 
-  //  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
-  //                                                          const Duration &endAcquisitionTime,
-  //                                                          const RangeVector & ranges,
-  //                                                          const RangeSet & rangeSet,
-  //                                                          const size_t & userFirstAzimutAngleIndex,
-  //                                                          const size_t & userLastAzimutAngleIndex,
-  //                                                          const size_t & userFirstElevationAngleIndex,
-  //                                                          const size_t & userLastElevationAngleIndex);
+  // LIDARUndistortedFrame<PointType> createUndistortedFrame(
+  //   const Duration & startAcquisitionTime,
+  //   const Duration & endAcquisitionTime,
+  //   const RangeVector & ranges,
+  //   const RangeSet & rangeSet,
+  //   const size_t & userFirstAzimutAngleIndex,
+  //   const size_t & userLastAzimutAngleIndex,
+  //   const size_t & userFirstElevationAngleIndex,
+  //   const size_t & userLastElevationAngleIndex);
 
-  //  LIDARUndistortedFrame<PointType> createUndistortedFrame(const Duration &startAcquisitionTime,
-  //                                                          const Duration &endAcquisitionTime,
-  //                                                          const RangeVector & ranges,
-  //                                                          const RangeSet & rangeSet,
-  //                                                          const size_t & firstAzimutAngleIndex,
-  //                                                          const size_t & lastAzimutAngleIndex);
-  //                                                          const size_t & userFirstElevationAngleIndex,
-  //                                                          const size_t & userLastElevationAngleIndex);
+  // LIDARUndistortedFrame<PointType> createUndistortedFrame(
+  //   const Duration & startAcquisitionTime,
+  //   const Duration & endAcquisitionTime,
+  //   const RangeVector & ranges,
+  //   const RangeSet & rangeSet,
+  //   const size_t & firstAzimutAngleIndex,
+  //   const size_t & lastAzimutAngleIndex);
+  // const size_t & userFirstElevationAngleIndex,
+  // const size_t & userLastElevationAngleIndex);
 
 protected:
   LIDARPose<Scalar> pose_;

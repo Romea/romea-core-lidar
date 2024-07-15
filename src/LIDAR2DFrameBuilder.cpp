@@ -18,7 +18,7 @@
 
 // romea
 #include "romea_core_lidar/LIDAR2DFrameBuilder.hpp"
-#include <romea_core_common/pointset/PointTraits.hpp>
+#include "romea_core_common/pointset/PointTraits.hpp"
 
 namespace romea
 {

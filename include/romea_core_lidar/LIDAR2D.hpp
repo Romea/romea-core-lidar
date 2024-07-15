@@ -19,13 +19,12 @@
 // eigen
 #include <Eigen/Geometry>
 
-// romea core
-#include <romea_core_common/pointset/PointSet.hpp>
-
 // std
 #include <string>
 #include <vector>
 
+// romea core
+#include "romea_core_common/pointset/PointSet.hpp"
 
 namespace romea
 {

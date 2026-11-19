@@ -8,6 +8,9 @@
   <license>Apache License 2.0</license>
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <build_depend>eigen</build_depend>
+  <build_export_depend>eigen</build_export_depend>
+
   <export>
     <build_type>cmake</build_type>
   </export>
